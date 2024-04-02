@@ -7,7 +7,7 @@ const path = require('path');
 const bodyParser = require("body-parser")
 const { Server } = require('socket.io');
 
-const PORT = process.env.PORT||3001;
+const PORT = process.env.PORT||3002;
 
 const app = express();
 const server = createServer(app);
@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 //#region Handle Requests
 app.get('/', (req, res) => {
     // console.log(res.body);
+    // console.log(req.body);
     res.sendFile(path.join(__dirname,"../Client_side/pages/index.html"))
 });
 
@@ -37,6 +38,6 @@ io.on('connection', (socket) => {
 
 //#endregion
 
-server.listen(3001, () => {
+server.listen(PORT, () => {
   console.log('server running at http://localhost:'+PORT);
 });
